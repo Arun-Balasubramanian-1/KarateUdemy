@@ -6,6 +6,14 @@ Feature: Home Page Tests
     Given path 'tags'
     When method Get
     Then status 200
+    # Validating the Datatype in response
+    And match response.tags == "#array"
+    And match each response.tags == "#string"
+    # Validating partial data in response 
+    And match response.tags contains "GitHub"
+    And match response.tags !contains "GitLab"
+    And match response.tags contains ["Zoom", "YouTube"]
+    And match response.tags !contains ["Zoom", "Youtube"]
 
   Scenario: Get Articles
     Given path 'articles'
@@ -24,3 +32,7 @@ Feature: Home Page Tests
     Given path 'articles'
     When method Get
     Then status 200
+    # Validating the count of items in list response
+    And match response.articles == "#[10]"
+    # Validating the response data
+    And match response.articlesCount == 10
