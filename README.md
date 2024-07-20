@@ -15,8 +15,7 @@ mvn test
 ### To run a specific test:
 
 ```shell
-mvn test "-Dtest=ConduitTest#testTags"
+mvn test "-Dkarate.options=--tags @debug"
 ```
 
-Explanation: mvn test "-Dtest={TestRunner ClassName}#{TestRunner MethodName}"
-It will run the tests with the tags mentioned in the testTags method.
+Explanation: Tests with @debug tag will be executed
