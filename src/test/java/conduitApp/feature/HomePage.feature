@@ -3,7 +3,7 @@ Feature: Home Page Tests
   Background: Define the url
     Given url 'https://conduit-api.bondaracademy.com/api/'
 
-  @debug
+  @debug @sanity
   Scenario: Get all Tags
     Given path 'tags'
     When method Get
