@@ -22,6 +22,7 @@ Feature: Home Page Tests
     When method Get
     Then status 200
 
+  @ignore
   Scenario: v1 -> Get 10 articles
     Given param limit = 10
     Given param offset = 0

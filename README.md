@@ -12,6 +12,8 @@
 ```shell
 mvn test
 ```
+-> Use @ignore to ignore a particular test.
+
 ### To run a specific test:
 
 ```shell
@@ -19,3 +21,5 @@ mvn test "-Dkarate.options=--tags @debug"
 ```
 
 Explanation: Tests with @debug tag will be executed
+
+-> Multiple tags can be given for a test.
