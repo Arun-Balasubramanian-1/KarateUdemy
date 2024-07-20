@@ -12,7 +12,7 @@
 ```shell
 mvn test
 ```
--> Use @ignore to ignore a particular test.
+- Use @ignore to ignore a particular test.
 
 ### To run a specific test:
 
@@ -22,4 +22,8 @@ mvn test "-Dkarate.options=--tags @debug"
 
 Explanation: Tests with @debug tag will be executed
 
--> Multiple tags can be given for a test.
+- Multiple tags can be given for a test.
+- Use "~" operator to ignore particular tag and execute remaining tests
+```shell
+mvn test "-Dkarate.options=--tags ~@sanity"
+```
