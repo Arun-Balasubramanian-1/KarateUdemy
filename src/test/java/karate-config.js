@@ -22,5 +22,8 @@ function fn() {
     config.userEmail = 'arunqa@conduit.com'
     config.userPassword = 'arunconduit'
   }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
   return config;
 }

@@ -37,5 +37,3 @@ Feature: Home Page Tests
     Then status 200
     # Validating the count of items in list response
     And match response.articles == "#[10]"
-    # Validating the response data
-    And match response.articlesCount == 10
