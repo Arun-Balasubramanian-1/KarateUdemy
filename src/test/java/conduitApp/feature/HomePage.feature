@@ -1,7 +1,7 @@
 Feature: Home Page Tests
 
   Background: Define the url
-    Given url 'https://conduit-api.bondaracademy.com/api/'
+    Given url apiUrl
 
   @sanity
   Scenario: Get all Tags
