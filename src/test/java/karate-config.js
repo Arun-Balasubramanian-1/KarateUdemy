@@ -16,10 +16,11 @@ function fn() {
     apiUrl: 'https://conduit-api.bondaracademy.com/api/'
   }
   if (env == 'dev') {
-    // customize
-    // e.g. config.foo = 'bar';
-  } else if (env == 'e2e') {
-    // customize
+    config.userEmail = 'arun@conduit.com'
+    config.userPassword = 'arunconduit'
+  } else if (env == 'qa') {
+    config.userEmail = 'arunqa@conduit.com'
+    config.userPassword = 'arunconduit'
   }
   return config;
 }

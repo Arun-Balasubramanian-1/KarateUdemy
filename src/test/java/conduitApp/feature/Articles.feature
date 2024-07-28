@@ -3,7 +3,7 @@ Feature: Create and Delete Articles
 
 Background:
   Given url apiUrl
-  * def response = callonce read('classpath:helpers/CreateToken.feature') {"email": "arun@conduit.com", "password": "arunconduit"}
+  * def response = callonce read('classpath:helpers/CreateToken.feature')
   * def token = response.authToken
   * def uuid = function(){ return java.util.UUID.randomUUID() + '' }
 
