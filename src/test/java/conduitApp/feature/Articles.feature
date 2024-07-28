@@ -1,15 +1,13 @@
 Feature: Create and Delete Articles
 
-
 Background:
   Given url 'https://conduit-api.bondaracademy.com/api/'
-  Given path 'users/login'
-  And request {"user": {"email": "arun@conduit.com", "password": "arunconduit"}}
-  When method Post
-  Then status 200
-  * def token = response.user.token
+  * def response = call read('classpath:helpers/CreateToken.feature')
+  # response will hold the variables(authToken) of CreateToken feature file
+  * def token = response.authToken
   * def uuid = function(){ return java.util.UUID.randomUUID() + '' }
 
+@debug
 Scenario: Create Article
   Given path 'articles'
   And header Authorization = 'Token ' + token
