@@ -3,8 +3,7 @@ Feature: Create and Delete Articles
 
 Background:
   Given url 'https://conduit-api.bondaracademy.com/api/'
-  * def response = callonce read('classpath:helpers/CreateToken.feature')
-  # response will hold the variables(authToken) of CreateToken feature file
+  * def response = callonce read('classpath:helpers/CreateToken.feature') {"email": "arun@conduit.com", "password": "arunconduit"}
   * def token = response.authToken
   * def uuid = function(){ return java.util.UUID.randomUUID() + '' }
 
