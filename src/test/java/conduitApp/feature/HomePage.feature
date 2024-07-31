@@ -53,3 +53,7 @@ Feature: Home Page Tests
     And match response..username contains "arun"
     # Match all elements
     And match each response..following == false
+    # Validate Datatype username of all elements 
+    And match each response..username == "#string"
+    # username can be null (or) string (or) username is not expected in response
+    And match each response..bio == "##string"
