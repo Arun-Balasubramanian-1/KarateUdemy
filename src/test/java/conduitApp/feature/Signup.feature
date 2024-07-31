@@ -6,7 +6,6 @@ Feature: Signup
     * def sdf = new java.text.SimpleDateFormat("yyyyMMddHHmmss")
     * def timestamp = sdf.format(date)
 
-  @debug
   Scenario: New user signup
     * def username = 'test' + timestamp
     * def email = username + '@conduit.com'
