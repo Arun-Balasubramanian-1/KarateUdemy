@@ -3,7 +3,7 @@ Feature: Home Page Tests
   Background: Define the url
     Given url apiUrl
 
-    @sanity
+  @sanity
   Scenario: Get all Tags
     Given path 'tags'
     When method Get
@@ -24,7 +24,7 @@ Feature: Home Page Tests
     When method Get
     Then status 200
 
-    @ignore
+  @ignore
   Scenario: v1 -> Get 10 articles
     Given param limit = 10
     Given param offset = 0
@@ -32,7 +32,6 @@ Feature: Home Page Tests
     When method Get
     Then status 200
 
-    @debug
     Scenario: v2 -> Get 10 articles
       * def timeValidator = read('classpath:helpers/time-validator.js')
       Given params { limit: 10, offset: 0}
