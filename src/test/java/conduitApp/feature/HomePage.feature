@@ -3,7 +3,7 @@ Feature: Home Page Tests
   Background: Define the url
     Given url apiUrl
 
-  @sanity
+    @sanity
   Scenario: Get all Tags
     Given path 'tags'
     When method Get
@@ -24,7 +24,7 @@ Feature: Home Page Tests
     When method Get
     Then status 200
 
-  @ignore
+    @ignore
   Scenario: v1 -> Get 10 articles
     Given param limit = 10
     Given param offset = 0
@@ -32,28 +32,31 @@ Feature: Home Page Tests
     When method Get
     Then status 200
 
-  @debug
-  Scenario: v2 -> Get 10 articles
-    Given params { limit: 10, offset: 0}
-    Given path 'articles'
-    When method Get
-    Then status 200
-    # Validating the count of items in list response
-    And match response.articles == "#[10]"
-
-    And match response.articlesCount == 78
-    And match response.articlesCount != 79
-    # Both Datatype and Value validation
-    And match response == { "articles": "#array", "articlesCount": 78 }
-    # partial value validation in a nested key
-    And match response.articles[0].createdAt contains "2024"
-    # [*] for all elements in the articles array
-    And match response.articles[*].favoritesCount contains 1
-    # Shorthand for nested keys validation
-    And match response..username contains "arun"
-    # Match all elements
-    And match each response..following == false
-    # Validate Datatype username of all elements 
-    And match each response..username == "#string"
-    # username can be null (or) string (or) username is not expected in response
-    And match each response..bio == "##string"
+    @debug
+    Scenario: v2 -> Get 10 articles
+      * def timeValidator = read('classpath:helpers/time-validator.js')
+      Given params { limit: 10, offset: 0}
+      Given path 'articles'
+      When method Get
+      Then status 200
+      And match response == { "articles": "#array", "articlesCount": 91 }
+      And match each response.articles ==
+      """
+          {
+            "slug": "#string",
+            "title": "#string",
+            "description": "#string",
+            "body": "#string",
+            "tagList": "#array",
+            "createdAt": '#? timeValidator(_)',
+            "updatedAt": '#? timeValidator(_)',
+            "favorited": "#boolean",
+            "favoritesCount": "#number",
+            "author": {
+              "username": "#string",
+              "bio": "##string",
+              "image": "#string",
+              "following": "#boolean",
+            }
+          }
+      """
