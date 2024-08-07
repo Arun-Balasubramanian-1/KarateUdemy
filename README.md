@@ -35,3 +35,8 @@ mvn test "-Dkarate.options=--tags ~@sanity"
 ```shell
 mvn test "-Dkarate.options=classpath:conduitApp/feature/HomePage.feature:33"
 ``` 
+
+### Debugging:
+- First check StackTrace for file name, line number or error message.
+- Then use (* print) to print values.
+- Then comment the section and rerun few times to narrow down the issue.

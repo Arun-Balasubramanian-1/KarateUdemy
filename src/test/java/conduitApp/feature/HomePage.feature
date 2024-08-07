@@ -32,30 +32,30 @@ Feature: Home Page Tests
     When method Get
     Then status 200
 
-    Scenario: v2 -> Get 10 articles
-      * def timeValidator = read('classpath:helpers/time-validator.js')
-      Given params { limit: 10, offset: 0}
-      Given path 'articles'
-      When method Get
-      Then status 200
-      And match response == { "articles": "#array", "articlesCount": 91 }
-      And match each response.articles ==
-      """
-          {
-            "slug": "#string",
-            "title": "#string",
-            "description": "#string",
-            "body": "#string",
-            "tagList": "#array",
-            "createdAt": '#? timeValidator(_)',
-            "updatedAt": '#? timeValidator(_)',
-            "favorited": "#boolean",
-            "favoritesCount": "#number",
-            "author": {
-              "username": "#string",
-              "bio": "##string",
-              "image": "#string",
-              "following": "#boolean",
-            }
+  Scenario: v2 -> Get 10 articles
+    * def timeValidator = read('classpath:helpers/time-validator.js')
+    Given params { limit: 10, offset: 0}
+    Given path 'articles'
+    When method Get
+    Then status 200
+    And match response == { "articles": "#array", "articlesCount": 91 }
+    And match each response.articles ==
+    """
+        {
+          "slug": "#string",
+          "title": "#string",
+          "description": "#string",
+          "body": "#string",
+          "tagList": "#array",
+          "createdAt": '#? timeValidator(_)',
+          "updatedAt": '#? timeValidator(_)',
+          "favorited": "#boolean",
+          "favoritesCount": "#number",
+          "author": {
+            "username": "#string",
+            "bio": "##string",
+            "image": "#string",
+            "following": "#boolean",
           }
-      """
+        }
+    """
