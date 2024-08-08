@@ -3,7 +3,7 @@ Feature: Hooks
 
 Background:
   * print "I am background"
-  * def result = call read('classpath:helpers/sample.feature')
+  * def result = callonce read('classpath:helpers/sample.feature')
   * def name = result.username
   
 Scenario: First Scenario
