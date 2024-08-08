@@ -3,13 +3,11 @@ Feature: Hooks
 
 Background:
   * print "I am background"
-  * def result = callonce read('classpath:helpers/sample.feature')
-  * def name = result.username
+
+  * configure afterFeature = function() { karate.call('classpath:helpers/sample.feature')}
   
 Scenario: First Scenario
-  * print name
   * print "I am first scenario"
 
 Scenario: Second Scenario
-  * print name
   * print "I am second scenario"
