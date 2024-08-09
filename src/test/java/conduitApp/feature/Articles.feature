@@ -1,3 +1,4 @@
+@parallel=false
 Feature: Create and Delete Articles
 
 Background:
