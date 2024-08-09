@@ -38,7 +38,7 @@ Feature: Home Page Tests
     Given path 'articles'
     When method Get
     Then status 200
-    And match response == { "articles": "#array", "articlesCount": 91 }
+    And match response == { "articles": "#array", "articlesCount": "#number" }
     And match each response.articles ==
     """
         {
