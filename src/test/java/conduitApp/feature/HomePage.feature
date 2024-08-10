@@ -60,7 +60,6 @@ Feature: Home Page Tests
         }
     """
 
-  @debug
   Scenario: Like Article if already not liked
     Given params { limit: 10, offset: 0}
     Given path 'articles'
@@ -76,3 +75,12 @@ Feature: Home Page Tests
     When method Get
     Then status 200
     And match response.articles[0].favoritesCount == result
+
+  @debug
+  Scenario: retry until
+    * configure retry = { count: 10, interval: 2000 }
+    Given params { limit: 10, offset: 0}
+    Given path 'articles'
+    And retry until response.articles[0].favoritesCount == 1
+    When method Get
+    Then status 200
