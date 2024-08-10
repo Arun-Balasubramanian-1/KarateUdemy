@@ -59,3 +59,21 @@ Feature: Home Page Tests
           }
         }
     """
+
+  @debug
+  Scenario: Like Article if already not liked
+    Given params { limit: 10, offset: 0}
+    Given path 'articles'
+    When method Get
+    Then status 200
+    * def favoriteCount = response.articles[0].favoritesCount
+    * def article = response.articles[0]
+
+    * if(favoriteCount == 0) karate.call('classpath:helpers/likeArticle.feature', article)
+
+    Given params { limit: 10, offset: 0}
+    Given path 'articles'
+    When method Get
+    Then status 200
+    * def favoriteCount = response.articles[0].favoritesCount
+    And match favoriteCount == 1
