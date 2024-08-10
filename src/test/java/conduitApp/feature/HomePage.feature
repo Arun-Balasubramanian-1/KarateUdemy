@@ -66,14 +66,13 @@ Feature: Home Page Tests
     Given path 'articles'
     When method Get
     Then status 200
-    * def favoriteCount = response.articles[0].favoritesCount
+    * def favoritesCount = response.articles[0].favoritesCount
     * def article = response.articles[0]
 
-    * if(favoriteCount == 0) karate.call('classpath:helpers/likeArticle.feature', article)
+    * def result = (favoritesCount == 0) ? karate.call('classpath:helpers/likeArticle.feature', article).LikesCount : favoritesCount
 
     Given params { limit: 10, offset: 0}
     Given path 'articles'
     When method Get
     Then status 200
-    * def favoriteCount = response.articles[0].favoritesCount
-    And match favoriteCount == 1
+    And match response.articles[0].favoritesCount == result
