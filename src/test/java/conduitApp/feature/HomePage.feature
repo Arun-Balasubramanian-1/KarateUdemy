@@ -76,11 +76,19 @@ Feature: Home Page Tests
     Then status 200
     And match response.articles[0].favoritesCount == result
 
-  @debug
   Scenario: retry until
     * configure retry = { count: 10, interval: 2000 }
     Given params { limit: 10, offset: 0}
     Given path 'articles'
     And retry until response.articles[0].favoritesCount == 1
+    When method Get
+    Then status 200
+  
+  @debug
+  Scenario: sleep
+    * def sleep = function(pause){ java.lang.Thread.sleep(pause) }
+    Given params { limit: 10, offset: 0}
+    Given path 'articles'
+    * eval sleep(10000)
     When method Get
     Then status 200
